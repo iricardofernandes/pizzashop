@@ -1,6 +1,6 @@
+import { db } from '@/db/connection'
+import { restaurants, users } from '@/db/schema'
 import { Elysia, t } from 'elysia'
-import { db } from '../../db/connection'
-import { restaurants, users } from '../../db/schema'
 
 export const registerRestaurant = new Elysia().post(
   '/restaurants',
@@ -28,7 +28,7 @@ export const registerRestaurant = new Elysia().post(
     body: t.Object({
       restaurantName: t.String(),
       managerName: t.String(),
-      email: t.String(),
+      email: t.String({ format: 'email' }),
       phone: t.String(),
     }),
   }
