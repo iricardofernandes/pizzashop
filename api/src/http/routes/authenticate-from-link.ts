@@ -4,6 +4,7 @@ import dayjs from 'dayjs'
 import { eq } from 'drizzle-orm'
 import { Elysia, t } from 'elysia'
 import { auth } from '../auth'
+import { BadRequestError } from '../errors/bad-request-error'
 
 export const authenticateFromLink = new Elysia().use(auth).get(
   '/auth-links/authenticate',
@@ -17,7 +18,7 @@ export const authenticateFromLink = new Elysia().use(auth).get(
     })
 
     if (!authLinkFromCode) {
-      throw new Error('Invalid auth link')
+      throw new BadRequestError('Invalid auth link')
     }
 
     const daySinceAuthLinkCreated = dayjs().diff(
@@ -26,7 +27,7 @@ export const authenticateFromLink = new Elysia().use(auth).get(
     )
 
     if (daySinceAuthLinkCreated > 7) {
-      throw new Error('Auth link expired, please generate a new one')
+      throw new BadRequestError('Auth link expired, please generate a new one')
     }
 
     const managerRestaurant = await db.query.restaurants.findFirst({

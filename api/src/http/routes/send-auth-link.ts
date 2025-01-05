@@ -2,7 +2,7 @@ import { db } from '@/db/connection'
 import { authLinks } from '@/db/schema'
 import { env } from '@/env'
 import { createId } from '@paralleldrive/cuid2'
-import { Elysia, t } from 'elysia'
+import { Elysia, NotFoundError, t } from 'elysia'
 
 export const sentAuthLink = new Elysia().post(
   '/authenticate',
@@ -16,7 +16,7 @@ export const sentAuthLink = new Elysia().post(
     })
 
     if (!userFromEmail) {
-      throw new Error('User not found')
+      throw new NotFoundError('User not found')
     }
 
     const authLinkCode = createId()

@@ -1,6 +1,7 @@
 import { env } from '@/env'
 import jwt from '@elysiajs/jwt'
 import { Elysia, type Static, t } from 'elysia'
+import { UnauthorizedError } from './errors/unauthorized-error'
 
 const jwtPayload = t.Object({
   sub: t.String(),
@@ -33,7 +34,7 @@ export const auth = new Elysia()
         const payload = await jwt.verify(auth.value)
 
         if (!payload) {
-          throw new Error('Unauthorized')
+          throw new UnauthorizedError()
         }
 
         return {
