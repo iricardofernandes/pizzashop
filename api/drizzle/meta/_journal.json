@@ -36,6 +36,13 @@
       "when": 1735743544946,
       "tag": "0004_lush_cannonball",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1736205427391,
+      "tag": "0005_daily_vermin",
+      "breakpoints": true
     }
   ]
 }
