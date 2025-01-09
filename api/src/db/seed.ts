@@ -122,8 +122,8 @@ for (let i = 0; i < 200; i++) {
 
   let totalInCents = 0
 
-  // biome-ignore lint/complexity/noForEach: <explanation>
-  orderProducts.forEach(orderProduct => {
+  for (let i = 0; i < orderProducts.length; i++) {
+    const orderProduct = orderProducts[i]
     const quantity = faker.number.int({ min: 1, max: 3 })
 
     totalInCents += orderProduct.priceInCents * quantity
@@ -134,7 +134,7 @@ for (let i = 0; i < 200; i++) {
       priceInCents: orderProduct.priceInCents,
       quantity,
     })
-  })
+  }
 
   ordersToInsert.push({
     id: orderId,
