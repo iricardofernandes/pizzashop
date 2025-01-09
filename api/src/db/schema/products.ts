@@ -9,7 +9,7 @@ export const products = pgTable('products', {
     .primaryKey(),
   name: text('name').notNull(),
   description: text('description'),
-  priceInCenters: integer('price_in_cents').notNull(),
+  priceInCents: integer('price_in_cents').notNull(),
   restaurantId: text('restaurant_id')
     .notNull()
     .references(() => restaurants.id, {

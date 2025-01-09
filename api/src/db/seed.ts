@@ -13,12 +13,12 @@ import {
 /**
  * Reset database
  */
-await db.delete(users)
-await db.delete(restaurants)
 await db.delete(orderItems)
 await db.delete(orders)
 await db.delete(products)
 await db.delete(authLinks)
+await db.delete(restaurants)
+await db.delete(users)
 
 console.log('✔ Database reset!')
 
@@ -85,9 +85,7 @@ function generateProduct() {
     name: faker.commerce.productName(),
     description: faker.commerce.productDescription(),
     restaurantId: restaurant.id,
-    priceInCenters: Number(
-      faker.commerce.price({ min: 190, max: 490, dec: 0 })
-    ),
+    priceInCents: Number(faker.commerce.price({ min: 190, max: 490, dec: 0 })),
   }
 }
 
@@ -112,7 +110,7 @@ type OrderItemsInsert = typeof orderItems.$inferInsert
 type OrderInsert = typeof orders.$inferInsert
 
 const orderItemsToInsert: OrderItemsInsert[] = []
-const orderToInsert: OrderInsert[] = []
+const ordersToInsert: OrderInsert[] = []
 
 for (let i = 0; i < 200; i++) {
   const orderId = createId()
@@ -128,34 +126,34 @@ for (let i = 0; i < 200; i++) {
   orderProducts.forEach(orderProduct => {
     const quantity = faker.number.int({ min: 1, max: 3 })
 
-    totalInCents += orderProduct.priceInCenters * quantity
+    totalInCents += orderProduct.priceInCents * quantity
 
     orderItemsToInsert.push({
       orderId,
       productId: orderProduct.id,
-      priceInCents: orderProduct.priceInCenters,
+      priceInCents: orderProduct.priceInCents,
       quantity,
     })
+  })
 
-    orderToInsert.push({
-      id: orderId,
-      customerId: faker.helpers.arrayElement([customer1.id, customer2.id]),
-      restaurantId: restaurant.id,
-      totalInCents,
-      status: faker.helpers.arrayElement([
-        'pending',
-        'processing',
-        'delivering',
-        'delivered',
-        'canceled',
-      ]),
-      createdAt: faker.date.recent({ days: 40 }),
-    })
+  ordersToInsert.push({
+    id: orderId,
+    customerId: faker.helpers.arrayElement([customer1.id, customer2.id]),
+    restaurantId: restaurant.id,
+    totalInCents,
+    status: faker.helpers.arrayElement([
+      'pending',
+      'processing',
+      'delivering',
+      'delivered',
+      'canceled',
+    ]),
+    createdAt: faker.date.recent({ days: 40 }),
   })
 }
 
-await db.insert(orders).values(orderToInsert).execute()
-await db.insert(orderItems).values(orderItemsToInsert).execute()
+await db.insert(orders).values(ordersToInsert)
+await db.insert(orderItems).values(orderItemsToInsert)
 
 console.log('✔ Created orders!')
 
