@@ -5,50 +5,8 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1735625106802,
-      "tag": "0000_many_punisher",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "7",
-      "when": 1735625282545,
-      "tag": "0001_burly_dust",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1735675425490,
-      "tag": "0002_lovely_morg",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1735675638131,
-      "tag": "0003_milky_northstar",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1735743544946,
-      "tag": "0004_lush_cannonball",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1736205427391,
-      "tag": "0005_daily_vermin",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1736386575319,
-      "tag": "0008_lovely_sasquatch",
+      "when": 1736389875057,
+      "tag": "0000_superb_killmonger",
       "breakpoints": true
     }
   ]

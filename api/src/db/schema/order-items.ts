@@ -7,7 +7,7 @@ export const orderItems = pgTable('order_items', {
   id: text('id')
     .$defaultFn(() => createId())
     .primaryKey(),
-  orderId: text('customer_id')
+  orderId: text('order_id')
     .notNull()
     .references(() => orders.id, {
       onDelete: 'cascade',
