@@ -43,6 +43,13 @@
       "when": 1736205427391,
       "tag": "0005_daily_vermin",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1736386575319,
+      "tag": "0008_lovely_sasquatch",
+      "breakpoints": true
     }
   ]
 }
