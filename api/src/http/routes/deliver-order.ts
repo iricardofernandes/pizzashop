@@ -6,8 +6,8 @@ import { auth } from '../auth'
 import { BadRequestError } from '../errors/bad-request-error'
 import { UnauthorizedError } from '../errors/unauthorized-error'
 
-export const approveOrder = new Elysia().use(auth).patch(
-  '/orders/:orderId/approve',
+export const deliverOrder = new Elysia().use(auth).patch(
+  '/orders/:orderId/deliver',
   async ({ getCurrentUser, params }) => {
     const { orderId } = params
     const { restaurantId } = await getCurrentUser()
@@ -26,13 +26,15 @@ export const approveOrder = new Elysia().use(auth).patch(
       throw new NotFoundError('Order not found')
     }
 
-    if (order.status !== 'pending') {
-      throw new BadRequestError('You can only approve pending orders')
+    if (order.status !== 'delivering') {
+      throw new BadRequestError(
+        'You cannot deliver orders that are not in the delivering state'
+      )
     }
 
     await db
       .update(orders)
-      .set({ status: 'processing' })
+      .set({ status: 'delivered' })
       .where(eq(orders.id, orderId))
   },
   {
