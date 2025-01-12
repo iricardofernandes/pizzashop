@@ -4,6 +4,7 @@ import { authenticateFromLink } from './routes/authenticate-from-link'
 import { cancelOrder } from './routes/cancel-order'
 import { deliverOrder } from './routes/deliver-order'
 import { dispatchOrder } from './routes/dispatch-order'
+import { getDayOrdersAmount } from './routes/get-day-orders-amount'
 import { getManagedRestaurant } from './routes/get-managed-restaurant'
 import { getMonthRevenue } from './routes/get-month-revenue'
 import { getOrderDetails } from './routes/get-order-details'
@@ -27,6 +28,7 @@ const app = new Elysia()
   .use(dispatchOrder)
   .use(getOrders)
   .use(getMonthRevenue)
+  .use(getDayOrdersAmount)
 
 app.listen(3333, () => {
   console.log('HTTP server is running!')
