@@ -3,7 +3,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Helmet } from 'react-helmet-async'
 import { useForm } from 'react-hook-form'
-import {z } from 'zod'
+import { Toast, toast } from 'sonner'
+import { z } from 'zod'
 
 const signInForm = z.object({
   email: z.string().email(),
@@ -12,9 +13,15 @@ const signInForm = z.object({
 type SignInForm = z.infer<typeof signInForm>
 
 export function SignIn() {
-  const {register, handleSubmit, formState: { isSubmitting }} = useForm<SignInForm>()
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm<SignInForm>()
 
-  async function handleSignIn(data: SignInForm) {}
+  async function handleSignIn(data: SignInForm) {
+    toast.error('Login efetuado com sucesso!')
+  }
 
   return (
     <>
