@@ -18,6 +18,7 @@ import { getProfile } from './routes/get-profile'
 import { registerRestaurant } from './routes/register-restaurant'
 import { sentAuthLink } from './routes/send-auth-link'
 import { signOut } from './routes/sign-out'
+import { updateProfile } from './routes/update-profile'
 
 const app = new Elysia()
   .use(
@@ -54,6 +55,7 @@ const app = new Elysia()
   .use(getMonthCanceledOrdersAmount)
   .use(getPopularProducts)
   .use(getDailyRevenueInPeriod)
+  .use(updateProfile)
 
 app.listen(3333, () => {
   console.log('HTTP server is running!')
