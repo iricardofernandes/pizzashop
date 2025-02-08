@@ -40,7 +40,8 @@
       "node_modules",
       ".turbo",
       ".next",
-      "apps/web/src/api/*.ts"
+      "apps/web/src/api/*.ts",
+      "public"
     ]
   }
 }
