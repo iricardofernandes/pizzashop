@@ -2,7 +2,7 @@ import { http, HttpResponse } from 'msw'
 import type { RegisterRestaurantBody } from '../register-restaurant'
 
 export const registerRestaurantMock = http.post<never, RegisterRestaurantBody>(
-  '/metrics/day-orders-amount',
+  '/restaurants',
   async ({ request }) => {
     const { restaurantName } = await request.json()
 
