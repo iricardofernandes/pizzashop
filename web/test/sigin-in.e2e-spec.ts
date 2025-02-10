@@ -11,7 +11,7 @@ test('sign in successfully', async ({ page }) => {
 
   const toast = page.getByText('Enviamos um e-mail de login!')
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('sign in with wrong credentials', async ({ page }) => {
@@ -25,7 +25,7 @@ test('sign in with wrong credentials', async ({ page }) => {
 
   const toast = page.getByText('Credenciais inválidas.')
 
-  expect(toast).toBeVisible()
+  await expect(toast).toBeVisible()
 })
 
 test('navigate to new restaurant page', async ({ page }) => {
